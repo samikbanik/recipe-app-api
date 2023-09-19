@@ -17,6 +17,7 @@ def create_user(**params):
     """Create and return a new user"""
     return get_user_model().objects.create_user(**params)
 
+
 class PublicUserApiTests(TestCase):
     """Test the public features of the user API"""
 
@@ -30,7 +31,7 @@ class PublicUserApiTests(TestCase):
             'password': 'testpass123',
             'name': 'Test name',
         }
-        res = self.client.post(CREATE_USER_URL,payload)
+        res = self.client.post(CREATE_USER_URL, payload)
 
         self.assertEqual(res.status_code, status.HTTP_201_CREATED)
         user = get_user_model().objects.get(email=payload['email'])
